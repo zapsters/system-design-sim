@@ -46,7 +46,7 @@ body,
   font-size: small;
   border: 2px solid pink;
   overflow-y: auto;
-  max-height: 1000px;
+  max-height: min(1000px, 25vw);
   box-sizing: border-box;
   padding: 0px 0px;
   --margin: 15px;
