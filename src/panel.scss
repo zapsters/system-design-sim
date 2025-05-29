@@ -1,0 +1,26 @@
+
+.customPanel {
+  font-size: small;
+  border: 2px solid pink;
+  overflow-y: auto;
+  max-height: 1000px;
+  box-sizing: border-box;
+  padding: 0px 0px;
+  --margin: 15px;
+  margin: var(--margin);
+  height: calc(100dvh - var(--margin) * 2);
+  width: min(220px, 20vw);
+  backdrop-filter: blur(4px);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+  h1 {
+    border-bottom: 2px solid black;
+  }
+}
