@@ -1,0 +1,69 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.deletable-node:hover .deletable-node-button {
+  opacity: 1 !important;
+  svg {
+    fill: rgba(0, 0, 0, 0.493) !important;
+  }
+}
+.deletable-node:hover .deletable-node-button:hover {
+  svg {
+    fill: rgba(0, 0, 0, 0.721) !important;
+  }
+}
+.deletable-node {
+  width: unset;
+  max-width: 300px;
+  img {
+    max-width: 100px;
+  }
+  svg {
+    vertical-align: top;
+  }
+}
+
+.react-flow__node-default {
+  padding: 5px 2px;
+  h1 {
+    font-size: 10px;
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+.customPanel {
+  font-size: small;
+  border: 2px solid pink;
+  overflow-y: auto;
+  max-height: 1000px;
+  box-sizing: border-box;
+  padding: 0px 0px;
+  --margin: 15px;
+  margin: var(--margin);
+  height: calc(100dvh - var(--margin) * 2);
+  width: 220px;
+  backdrop-filter: blur(4px);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+  h1 {
+    border-bottom: 2px solid black;
+  }
+}
