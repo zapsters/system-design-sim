@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
 import {
   ReactFlow,
   Background,
@@ -10,8 +10,6 @@ import {
   type OnConnect,
   reconnectEdge,
   Panel,
-  OnNodeDrag,
-  BuiltInNode,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
