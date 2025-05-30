@@ -9,8 +9,8 @@ import {
   useEdgesState,
   type OnConnect,
   reconnectEdge,
-  Panel,
 } from "@xyflow/react";
+import PanelElement from "./Panel.tsx";
 import "@xyflow/react/dist/style.css";
 
 import { initialNodes, nodeTypes } from "./nodes/index.js";
@@ -93,17 +93,8 @@ export default function App() {
         fitView>
         <Background />
         <MiniMap />
-
-        <Panel position="top-left" className="customPanel">
-          <h1>DB Schema</h1>
-          <h2>Control Panel</h2>
-          <h3>Control Panel</h3>
-          <h4>Control Panel</h4>
-          <h5>Control Panel</h5>
-          <h6>Control Panel</h6>
-          <p>Hi!</p>
-          <Controls orientation="horizontal" />
-        </Panel>
+        <PanelElement />
+        <Controls position="bottom-right" orientation="horizontal" />
       </ReactFlow>
     </>
   );

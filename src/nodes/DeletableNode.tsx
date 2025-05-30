@@ -14,15 +14,6 @@ export function DeletableNode({ id, data }: NodeProps<Deletable>) {
     // We add this class to use the same styles as React Flow's default nodes.
     <div className="react-flow__node-default deletable-node">
       {data.label && <h1>{data.label}</h1>}
-      {/* {data.images?.map((imageData, index) => (
-        <img
-          key={index}
-          src={imageData.src}
-          alt={imageData.alt || `Image ${index + 1}`}
-          width={40}
-          height={40}
-        />
-      ))} */}
       <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
         {data.images?.map((imageData, index) => (
           <div

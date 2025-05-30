@@ -3,9 +3,7 @@ import type { NodeTypes } from "@xyflow/react";
 import { PositionLoggerNode } from "./PositionLoggerNode";
 import { DeletableNode } from "./DeletableNode";
 import { AppNode } from "./types";
-import DesktopIcon from "../images/computer.svg?react";
-import PhoneIcon from "../images/phone.svg?react";
-import ServerIcon from "../images/server.svg?react";
+import { DesktopIcon, PhoneIcon, ServerIcon } from "../images/images.tsx";
 import { Position } from "@xyflow/react";
 
 export const initialNodes: AppNode[] = [
