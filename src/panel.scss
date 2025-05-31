@@ -1,17 +1,26 @@
-$panel-mobile-breakpoint: 1000px;
+$panel-mobile-breakpoint: 900px;
 
 .customPanel {
   font-size: small;
   border: 2px solid pink;
-  overflow-y: auto;
-  box-sizing: border-box;
   padding: 0px 0px;
   --margin: 15px;
   margin: var(--margin);
   height: calc(100dvh - var(--margin) * 2);
   width: 100%;
-  max-width: min(300px, 40vw);
+  max-width: min(160px, 40vw);
   backdrop-filter: blur(4px);
+
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  .react-flow__node-default {
+    margin: 0 !important;
+    span {
+      font-size: 10px !important;
+    }
+  }
   h1,
   h2,
   h3,
@@ -21,15 +30,18 @@ $panel-mobile-breakpoint: 1000px;
   p {
     margin: 0;
   }
-  h1 {
-    border-bottom: 2px solid black;
-  }
 }
 
 @media (max-width: $panel-mobile-breakpoint) {
   .customPanel {
     height: min(20vh, 170px);
-    width: calc(100vw - var(--margin) * 2) !important;
-    max-width: unset;
+    max-width: calc(100vw - var(--margin) * 2) !important;
+    flex-direction: row;
+    .react-flow__node-default {
+      * {
+        width: fit-content;
+      }
+      width: unset;
+    }
   }
 }

@@ -9,7 +9,6 @@ export const initialEdges: Edge[] = [
     target: "b",
     sourceHandle: "WebApp",
     animated: true,
-    data: { label: "Web Request", float: "left" },
   },
   {
     id: "a->c:MobileApp",
@@ -18,7 +17,6 @@ export const initialEdges: Edge[] = [
     target: "b",
     sourceHandle: "MobileApp",
     animated: true,
-    data: { label: "Mobile API Requests", float: "right" },
   },
   { id: "b->d", source: "b", target: "d" },
   { id: "c->d", source: "c", target: "d", animated: true },

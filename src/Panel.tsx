@@ -1,106 +1,87 @@
-import { Panel, Position } from "@xyflow/react";
-import { DesktopIcon, PhoneIcon, ServerIcon } from "./images/images.tsx";
-import { Deletable } from "./nodes/types.ts";
+import { Panel } from "@xyflow/react";
+import { AppNode } from "./nodes/types.ts";
+import { userImages } from "./nodes/UserNode.tsx";
+import { serverImages } from "./nodes/ServerNode.tsx";
 
-export const initialNodes: Deletable[] = [
+export const initialNodes: AppNode[] = [
   {
     id: "a",
-    type: "deletable-node",
+    type: "user-node",
     position: { x: 0, y: 0 },
     data: {
+      previewImages: userImages,
       label: "Users",
-      images: [
-        {
-          svg: <DesktopIcon style={{ height: "25px" }} />,
-          alt: "Web App",
-        },
-        {
-          svg: <PhoneIcon style={{ height: "25px" }} />,
-          alt: "Mobile App",
-        },
-      ],
-      handles: [
-        {
-          type: "source",
-          position: Position.Bottom,
-          offset: "-17%",
-          id: "WebApp",
-          edgeType: "labeled",
-          label: "Web App",
-          float: "left",
-          animated: true,
-        },
-        {
-          type: "source",
-          position: Position.Bottom,
-          offset: "17%",
-          id: "MobileApp",
-          edgeType: "labeled",
-          label: "Mobile App",
-          float: "right",
-          animated: true,
-        },
-      ],
     },
   },
   {
     id: "b",
-    type: "deletable-node",
-    position: { x: 100, y: 100 },
+    type: "server-node",
+    position: { x: 20, y: 100 },
     data: {
+      previewImages: serverImages,
       label: "",
-      images: [
-        {
-          svg: <ServerIcon style={{ height: "25px" }} />,
-          alt: "Web Server",
-        },
-      ],
-      handles: [{ type: "target", position: Position.Top, id: "WebServerConnection" }],
     },
   },
 ];
 
 export default function PanelElement() {
+  const onDragStart = (event: React.DragEvent, nodeType: string, nodeData: any) => {
+    event.dataTransfer.setData("application/reactflow", JSON.stringify({ nodeType, nodeData }));
+    event.dataTransfer.effectAllowed = "move";
+  };
+
   return (
-    <Panel position="top-left" className="customPanel">
-      {initialNodes.map((node: Deletable) => (
-        <div
-          key={node.id}
-          className="draggable-node-template"
-          draggable
-          onDragStart={(event) => {
-            event.dataTransfer.setData("application/reactflow", JSON.stringify(node));
-            event.dataTransfer.effectAllowed = "move";
-          }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            {node.data.images?.map((imageData: any, index: number) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  gap: "3px",
-                  fill: "#343232",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}>
-                {imageData.svg}
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: "fit",
-                    lineHeight: "1em",
-                    fontSize: "6px",
-                    flex: "right",
-                  }}>
-                  {imageData.alt}
-                </span>
+    <Panel position="bottom-left" className="customPanel">
+      {initialNodes.map((node: AppNode) => {
+        // Only render user nodes with previewImages
+        if (node.data && Array.isArray((node.data as { previewImages?: any[] }).previewImages)) {
+          const previewImages = (node.data as { previewImages: any[] }).previewImages;
+          return (
+            <div
+              key={node.id}
+              className="react-flow__node-default user-node"
+              draggable
+              onDragStart={(event) => onDragStart(event, node.type ?? "", node.data)}
+              style={{ cursor: "grab", marginBottom: "10px" }}>
+              <h1 className="title">{String(node.data.label)}</h1>
+              <div className="NodeImageContainer">
+                {previewImages.map((imageData, index) => (
+                  <div className="NodeImage" key={index}>
+                    {imageData.svg}
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "fit-content",
+                        lineHeight: "1em",
+                        fontSize: "6px",
+                        textAlign: "right",
+                      }}>
+                      {imageData.alt}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-            <span>{node.data.label || "Unnamed"}</span>
+            </div>
+          );
+        }
+
+        // Render other node types differently or return null
+        return (
+          <div
+            key={node.id}
+            className={`react-flow__node-default ${node.type}`}
+            draggable
+            onDragStart={(event) => onDragStart(event, node.type ?? "", node.data)}
+            style={{ cursor: "grab", marginBottom: "10px" }}>
+            <h1 className="title">{node.type === "server-node" ? "Server" : "Node"}</h1>
+            <p>
+              {typeof node.data.label === "string" && node.data.label.trim() !== ""
+                ? node.data.label
+                : "Untitled"}
+            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </Panel>
   );
 }

@@ -1,0 +1,21 @@
+.react-flow__node-default {
+  width: unset;
+  min-width: 20px;
+  min-height: 20px;
+  word-wrap: break-word;
+  max-width: 300px !important;
+  .deletable-node-button {
+    opacity: 0;
+    svg {
+      fill: rgb(51, 48, 48) !important;
+    }
+  }
+  &:hover {
+    .deletable-node-button {
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

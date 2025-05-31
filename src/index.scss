@@ -1,4 +1,5 @@
 @use "panel.scss";
+@use "NodeStyle.scss";
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -13,33 +14,34 @@ body,
   margin: 0;
 }
 
-.deletable-node:hover .deletable-node-button {
-  opacity: 1 !important;
-  svg {
-    fill: rgba(0, 0, 0, 0.493) !important;
+.react-flow__node-default {
+  padding: 2px 2px;
+  &:hover {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.373) !important;
   }
-}
-.deletable-node:hover .deletable-node-button:hover {
-  svg {
-    fill: rgba(0, 0, 0, 0.721) !important;
-  }
-}
-.deletable-node {
-  width: unset;
-  max-width: 300px;
-  img {
-    max-width: 100px;
-  }
-  svg {
-    vertical-align: top;
+  h1 {
+    margin: 0;
+    line-height: 1em;
+    font-size: 10px;
+    font-weight: 400;
   }
 }
 
-.react-flow__node-default {
-  padding: 5px 2px;
-  h1 {
-    font-size: 10px;
-    margin: 0;
-    font-weight: 400;
+.NodeImageContainer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1px;
+  .NodeImage {
+    width: fit-content;
+    display: flex;
+    gap: 3px;
+    fill: #343232;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      height: 27px;
+    }
   }
 }
